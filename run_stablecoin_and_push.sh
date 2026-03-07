@@ -12,9 +12,9 @@ set -euo pipefail
 #   GIT_USER_NAME, GIT_USER_EMAIL
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
-WORK_DIR="/home/ubuntu/.openclaw/multi_workspace/planb"
+WORK_DIR="/home/ubuntu/.openclaw/multi_workspace/planb/dailytask/stablecoin"
 TRACKER_PY="$WORK_DIR/stablecoin_tracker.py"
-REQS_TXT="$WORK_DIR/requirements_stablecoin.txt"
+REQS_TXT="$WORK_DIR/requirements.txt"
 CSV_OUT="$REPO_DIR/stablecoin.csv"
 
 : "${GITHUB_TOKEN:?GITHUB_TOKEN is required}"
