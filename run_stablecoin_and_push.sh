@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # This script:
-# 1) runs stablecoin_tracker.py (writes/updates stablecoin.xlsx)
-# 2) commits stablecoin.xlsx into this repo root
+# 1) runs stablecoin_tracker.py (writes/updates stablecoin.csv)
+# 2) commits stablecoin.csv into this repo root
 # 3) pushes via HTTPS using env var GITHUB_TOKEN
 #
 # Required env:
@@ -15,7 +15,7 @@ REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORK_DIR="/home/ubuntu/.openclaw/multi_workspace/planb"
 TRACKER_PY="$WORK_DIR/stablecoin_tracker.py"
 REQS_TXT="$WORK_DIR/requirements_stablecoin.txt"
-XLSX_OUT="$REPO_DIR/stablecoin.xlsx"
+CSV_OUT="$REPO_DIR/stablecoin.csv"
 
 : "${GITHUB_TOKEN:?GITHUB_TOKEN is required}"
 
@@ -29,12 +29,12 @@ fi
 source "$REPO_DIR/.venv/bin/activate"
 pip -q install -r "$REQS_TXT"
 
-# Run tracker, output xlsx into repo root
-python "$TRACKER_PY" --out "$XLSX_OUT"
+# Run tracker, output csv into repo root
+python "$TRACKER_PY" --out "$CSV_OUT"
 
 # Commit & push if changed
-if [ -n "$(git status --porcelain -- stablecoin.xlsx .gitignore 2>/dev/null)" ]; then
-  git add stablecoin.xlsx .gitignore
+if [ -n "$(git status --porcelain -- stablecoin.csv .gitignore 2>/dev/null)" ]; then
+  git add stablecoin.csv .gitignore
 
   GIT_USER_NAME="${GIT_USER_NAME:-stablecoin-bot}"
   GIT_USER_EMAIL="${GIT_USER_EMAIL:-stablecoin-bot@local}"

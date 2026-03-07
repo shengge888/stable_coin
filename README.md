@@ -3,7 +3,7 @@
 This repo is updated by a scheduled job.
 
 - Script: `run_stablecoin_and_push.sh`
-- Output: `stablecoin.xlsx` (repo root)
+- Output: `stablecoin.csv` (repo root)
 
 ## Manual run
 
