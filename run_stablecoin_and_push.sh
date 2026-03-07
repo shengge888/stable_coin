@@ -32,6 +32,9 @@ pip -q install -r "$REQS_TXT"
 # Run tracker, output csv into repo root
 python "$TRACKER_PY" --out "$CSV_OUT"
 
+# Refresh dailytask index (local management)
+python3 /home/ubuntu/.openclaw/multi_workspace/planb/dailytask/generate_task_index.py >/dev/null 2>&1 || true
+
 # Commit & push if changed
 if [ -n "$(git status --porcelain -- stablecoin.csv .gitignore 2>/dev/null)" ]; then
   git add stablecoin.csv .gitignore
